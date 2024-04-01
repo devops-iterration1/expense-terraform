@@ -1,5 +1,5 @@
-env = $1
-tf_action = $2
+env=$1
+action=$2
 
 if [ -z "$env" ]; then
   echo "env(dev|qa|prod) is missing"
@@ -12,5 +12,5 @@ fi
 
 rm -rf .terraform/terraform.tfstate
 terraform init -backend-config=env-$env/state.tfvars
-terraform $tf_action -var-file=env-$env/main.tfvars
+terraform action -var-file=env-$env/main.tfvars
 
