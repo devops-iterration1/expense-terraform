@@ -6,7 +6,7 @@ if [ -z "$env" ]; then
   exit 1
 fi
 
-if [ -z "$tf_action"]; then
+if [ -z "$action"]; then
   echo "tf_action(apply|destroy) is missing"
 fi
 
