@@ -6,8 +6,8 @@ if [ -z "$env" ]; then
   exit 1
 fi
 
-if [ -z "$action"]; then
-  echo "tf_action(apply|destroy) is missing"
+if [ -z "$action" ]; then
+  echo "action(apply|destroy) is missing"
 fi
 
 rm -rf .terraform/terraform.tfstate
