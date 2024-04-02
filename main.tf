@@ -6,6 +6,7 @@ module "frontend" {
   ssh_pass = var.ssh_pass
   env = var.env
   zone_id = var.zone_id
+  depends_on = [module.backend]
 }
 module "backend" {
   source = "./modules/app"
@@ -15,6 +16,7 @@ module "backend" {
   ssh_pass = var.ssh_pass
   env = var.env
   zone_id = var.zone_id
+  depends_on = [module.database]
 }
 module "database" {
   source = "./modules/app"
