@@ -1,4 +1,4 @@
-# entry point of terraform project
+# entry point of terraform project.
 module "frontend" {
   source = "./modules/app"
   instance_type = var.instance_type
