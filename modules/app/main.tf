@@ -14,8 +14,8 @@ resource "null_resource" "provision_ansible" {
     connection {
       type = "ssh"
       host = aws_instance.ec2.public_ip
-      user = jsondecode(data.vault_generic_secret.ssh.data_json).uid
-      password = jsondecode(data.vault_generic_secret.ssh.data_json).pwd
+      user = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
+      password = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
     }
     inline = [
       "sudo dnf install ansible -y",
