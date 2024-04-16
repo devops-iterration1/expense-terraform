@@ -19,7 +19,8 @@ resource "null_resource" "provision_ansible" {
     }
     inline = [
       "sudo dnf install ansible -y",
-      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible expense-setup.yml -e env=${var.env} -e role_name=${var.component}"
+      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible get-secrets.yml -e vault_token=${var.vault_token} -e env=${var.env} -e role_name=${var.component}",
+      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible expense-setup.yml -e env=${var.env} -e role_name=${var.component} -e @ssh-secrets.json -e @app-secrets.json"
     ]
   }
 }

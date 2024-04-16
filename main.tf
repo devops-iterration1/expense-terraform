@@ -5,6 +5,7 @@ module "frontend" {
   component = "frontend"
   env = var.env
   zone_id = var.zone_id
+  vault_token = var.vault_token
   depends_on = [module.backend]
 }
 module "backend" {
@@ -13,6 +14,7 @@ module "backend" {
   component = "backend"
   env = var.env
   zone_id = var.zone_id
+  vault_token = var.vault_token
   depends_on = [module.database]
 }
 module "database" {
@@ -21,4 +23,5 @@ module "database" {
   component = "database"
   env = var.env
   zone_id = var.zone_id
+  vault_token = var.vault_token
 }
