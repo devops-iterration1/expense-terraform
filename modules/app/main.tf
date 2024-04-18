@@ -7,6 +7,14 @@ resource "aws_instance" "ec2" {
     monitor = "yes"
     env = var.env
   }
+
+  instance_market_options{
+    market_type = "spot"
+    spot_options{
+      instance_interruption_behavior = "stop"
+      spot_instance_type = "persistent"
+    }
+  }
 }
 
 resource "null_resource" "provision_ansible" {
