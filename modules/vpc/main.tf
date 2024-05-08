@@ -71,3 +71,11 @@ resource "aws_route" "default" {
   destination_cidr_block    = var.vpc_ip_block
   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
 }
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-igw"
+  }
+}
