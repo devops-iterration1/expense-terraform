@@ -6,12 +6,14 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "fe" {
+  count = length(var.fe_subnets)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_ip_block
+  cidr_block = var.fe_subnets[count.index]
+  availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "${var.env}-subnet"
+    Name = "${var.env}-fe-subnet-${count.index}"
   }
 }
 
