@@ -33,4 +33,6 @@ module "vpc" {
   env = var.env
   vpc_ip_block = var.vpc_ip_block
   subnet_ip_block = var.subnet_ip_block
+  default_vpc_id = var.default_vpc_id
+  default_vpc_ip_block = var.default_vpc_ip_block
 }

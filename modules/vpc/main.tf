@@ -14,3 +14,12 @@ resource "aws_subnet" "main" {
     Name = "${var.env}-subnet"
   }
 }
+
+resource "aws_vpc_peering_connection" "foo" {
+  peer_vpc_id   = var.default_vpc_id
+  vpc_id        = aws_vpc.main.id
+
+  tags = {
+    Name = "${var.env}-vpc-peer-default-vpc"
+  }
+}
