@@ -35,4 +35,5 @@ module "vpc" {
   subnet_ip_block = var.subnet_ip_block
   default_vpc_id = var.default_vpc_id
   default_vpc_ip_block = var.default_vpc_ip_block
+  default_rtb_id = var.default_rtb_id
 }
