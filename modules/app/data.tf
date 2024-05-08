@@ -4,10 +4,10 @@ data "aws_ami" "my-ami" {
   name_regex = "RHEL-9-DevOps-Practice"
 }
 
-data "aws_security_group" "my-sg" {
-  name = "allow-all"
-}
+#data "aws_security_group" "my-sg" {
+#  name = "allow-all"
+#}
 
-data "vault_generic_secret" "ssh" {
-  path = "common/ssh"
-}
+#data "vault_generic_secret" "ssh" {
+#  path = "common/ssh"
+#}
