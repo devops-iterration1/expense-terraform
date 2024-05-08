@@ -7,4 +7,5 @@ variable "default_rtb_id" {}
 variable "fe_subnets" {}
 variable "be_subnets" {}
 variable "db_subnets" {}
+variable "public_subnets" {}
 variable "availability_zones" {}
