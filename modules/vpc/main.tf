@@ -82,7 +82,7 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public[count.index].id
 }
 
-############### FE subnet
+############### FE subnet ##############################################
 resource "aws_subnet" "fe" {
   count = length(var.fe_subnets)
   vpc_id     = aws_vpc.main.id
@@ -124,7 +124,7 @@ resource "aws_route_table_association" "frontend" {
 
 
 
-########### BE subnet
+########### BE subnet ######################################################
 resource "aws_subnet" "be" {
   count = length(var.be_subnets)
   vpc_id     = aws_vpc.main.id
@@ -164,7 +164,7 @@ resource "aws_route_table_association" "backend" {
   route_table_id = aws_route_table.backend[count.index].id
 }
 
-################ DB subnet
+################ DB subnet ########################################
 resource "aws_subnet" "db" {
   count = length(var.db_subnets)
   vpc_id     = aws_vpc.main.id
