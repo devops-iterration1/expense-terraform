@@ -124,7 +124,7 @@ resource "aws_route_table_association" "frontend" {
 
 
 
-########### BE subnet ######################################################
+############################### BE subnet ######################################################
 resource "aws_subnet" "be" {
   count = length(var.be_subnets)
   vpc_id     = aws_vpc.main.id
