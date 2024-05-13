@@ -43,22 +43,22 @@ resource "aws_instance" "ec2" {
   }
 }
 
-#resource "null_resource" "provision_ansible" {
-#  provisioner "remote-exec" {
-#    connection {
-#      type = "ssh"
-#      host = aws_instance.ec2.public_ip
-#      user = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
-#      password = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
-#    }
-#    inline = [
-#      "sudo pip install ansible hvac",
-#      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible get-secrets.yml -e vault_token=${var.vault_token} -e env=${var.env} -e role_name=${var.component}",
-#      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible expense-setup.yml -e env=${var.env} -e role_name=${var.component} -e @~/ssh-secrets.json -e @~/app-secrets.json",
-#      "rm -f ~/ssh-secrets.json ~/app-secrets.json"
-#    ]
-#  }
-#}
+resource "null_resource" "provision_ansible" {
+  provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      host = aws_instance.ec2.public_ip
+      user = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
+      password = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
+    }
+    inline = [
+      "sudo pip install ansible hvac",
+      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible get-secrets.yml -e vault_token=${var.vault_token} -e env=${var.env} -e role_name=${var.component}",
+      "ansible-pull -i localhost, -U https://github.com/devops-iterration1/expense-ansible expense-setup.yml -e env=${var.env} -e role_name=${var.component} -e @~/ssh-secrets.json -e @~/app-secrets.json",
+      "rm -f ~/ssh-secrets.json ~/app-secrets.json"
+    ]
+  }
+}
 
 resource "aws_route53_record" "A-record" {
   name    = "${var.component}-${var.env}"
