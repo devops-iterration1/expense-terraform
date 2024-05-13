@@ -1,6 +1,6 @@
 env = "dev"
 instance_type = "t3.small"
-zone_id = "Z0889503O7N4KMNPP3DP"
+zone_id = "Z05016193JAPZUY12R8OR"
 
 #    VPC
 vpc_ip_block = "10.10.0.0/24"
