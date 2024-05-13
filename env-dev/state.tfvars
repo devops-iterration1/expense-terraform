@@ -1,3 +1,3 @@
-bucket = "expense-tf-states"
-key    = "expense-terraform/dev/state"
+bucket = "exp-tf-state"
+key    = "dev/state"
 region = "us-east-1"
