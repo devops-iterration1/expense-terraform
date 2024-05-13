@@ -198,15 +198,10 @@ resource "aws_route_table" "db" {
 }
 
 # DB route table association
-resource "aws_subnet" "public" {
-  count = length(var.public_subnets)
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.public_subnets[count.index]
-  availability_zone = var.availability_zones[count.index]
-
-  tags = {
-    Name = "${var.env}-public-subnet-${count.index}"
-  }
+resource "aws_route_table_association" "db" {
+  count          = length(var.db_subnets)
+  subnet_id      = aws_subnet.db[count.index].id
+  route_table_id = aws_route_table.db[count.index].id
 }
 
 
