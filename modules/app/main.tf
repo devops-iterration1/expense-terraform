@@ -115,7 +115,7 @@ resource "aws_lb_target_group" "main_tg" {
     path                = "/health"
     port                = var.app_port
     unhealthy_threshold = 2
-    timeout             = 5
+    timeout             = 4
   }
 }
 
