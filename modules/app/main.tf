@@ -41,6 +41,10 @@ resource "aws_instance" "ec2" {
       spot_instance_type = "persistent"
     }
   }
+
+  lifecycle {
+    ignore_changes = [ami]
+  }
 }
 
 resource "null_resource" "provision_ansible" {
