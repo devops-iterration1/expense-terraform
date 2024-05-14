@@ -47,7 +47,7 @@ resource "null_resource" "provision_ansible" {
   provisioner "remote-exec" {
     connection {
       type = "ssh"
-      host = aws_instance.ec2.public_ip
+      host = aws_instance.ec2.private_ip
       user = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
       password = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
     }
