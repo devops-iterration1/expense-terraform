@@ -67,3 +67,5 @@ resource "aws_route53_record" "A-record" {
   records = [aws_instance.ec2.private_ip]
   ttl     = 30
 }
+
+##
