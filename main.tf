@@ -13,6 +13,7 @@ module "frontend" {
   lb_type = "public"
   lb_needed = true
   lb_subnet = module.vpc.public_subnets
+  app_port = 80
 }
 module "backend" {
   depends_on = [module.database]
@@ -28,6 +29,7 @@ module "backend" {
   lb_type = "public"
   lb_needed = true
   lb_subnet = module.vpc.be_subnets
+  app_port = 8080
 }
 module "database" {
   source = "./modules/app"
