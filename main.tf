@@ -10,6 +10,9 @@ module "frontend" {
   vault_token = var.vault_token
   vpc_id = module.vpc.vps_id
   subnets = module.vpc.fe_subnets
+  lb_type = "public"
+  lb_needed = true
+  lb_subnet = module.vpc.public_subnets
 }
 module "backend" {
   depends_on = [module.database]
@@ -22,6 +25,9 @@ module "backend" {
   vault_token = var.vault_token
   vpc_id = module.vpc.vps_id
   subnets = module.vpc.be_subnets
+  lb_type = "public"
+  lb_needed = true
+  lb_subnet = module.vpc.be_subnets
 }
 module "database" {
   source = "./modules/app"
