@@ -7,7 +7,7 @@ vpc_ip_block = "10.10.0.0/24"
 #subnet_ip_block = "10.10.0.0/24"
 default_vpc_id = "vpc-0b6dc4e5c7774329d"
 default_vpc_ip_block = "172.31.0.0/16"
-default_rtb_id = "rtb-0cf6d1c759914c89c"
+default_rtb_id = "rtb-0dac1dcac8d11eb7a"
 
 fe_subnets = ["10.10.0.0/27", "10.10.0.32/27"]
 be_subnets = ["10.10.0.64/27", "10.10.0.96/27"]
