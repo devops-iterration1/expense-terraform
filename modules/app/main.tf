@@ -74,4 +74,16 @@ resource "aws_route53_record" "A-record" {
   ttl     = 30
 }
 
+resource "aws_lb" "main" {
+  name               = "${var.component}-${var.env}-alb"
+  internal           = var.lb_type == "public" ? false : true
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.main.id]
+  subnets            = var.lb_subnets
+
+  tags = {
+    Environment = "${var.env}-${var.component}-alb"
+  }
+}
+
 ##
