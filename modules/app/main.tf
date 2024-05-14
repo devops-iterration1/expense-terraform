@@ -103,6 +103,7 @@ resource "aws_lb_target_group_attachment" "main_tg_att" {
 }
 
 resource "aws_lb_listener" "fe" {
+  count            = var.lb_needed ? 1 : 0
   load_balancer_arn = aws_lb.main_lb[0].arn
   port              = var.app_port
   protocol = "HTTP"
