@@ -26,7 +26,7 @@ module "backend" {
   vault_token = var.vault_token
   vpc_id = module.vpc.vps_id
   subnets = module.vpc.be_subnets
-  lb_type = "public"
+  lb_type = "private"
   lb_needed = true
   lb_subnets = module.vpc.be_subnets
   app_port = 8080
