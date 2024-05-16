@@ -1,5 +1,5 @@
 env = "dev"
-instance_type = "t3.micro"
+instance_type = "t3.small"
 zone_id = "Z05016193JAPZUY12R8OR"
 
 #    VPC
