@@ -64,8 +64,8 @@ module "vpc" {
   default_vpc_id = var.default_vpc_id
   default_vpc_ip_block = var.default_vpc_ip_block
   default_rtb_id = var.default_rtb_id
-  be_subnets = var.db_subnets
-  db_subnets = var.be_subnets
+  be_subnets = var.be_subnets
+  db_subnets = var.db_subnets
   fe_subnets = var.fe_subnets
   availability_zones = var.availability_zones
   public_subnets = var.public_subnets
