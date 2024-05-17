@@ -210,7 +210,7 @@ resource "aws_lb_listener" "be" {
   count             = var.lb_needed && var.lb_type != "public" ? 1 : 0
   load_balancer_arn = aws_lb.main_lb[0].arn
   port              = var.app_port
-  protocol          = "HTTPS"
+  protocol          = "HTTP"
 
   default_action {
     type = "forward"
