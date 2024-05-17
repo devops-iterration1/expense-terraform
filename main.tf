@@ -54,6 +54,7 @@ module "database" {
   bastion_nodes = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
   server_sg_cidr = var.be_subnets
+  app_port = 3306
 }
 
 module "vpc" {
