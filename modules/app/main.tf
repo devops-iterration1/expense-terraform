@@ -4,10 +4,24 @@ resource "aws_security_group" "main" {
   vpc_id      = var.vpc_id
 
   ingress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port        = var.app_port
+    to_port          = var.app_port
+    protocol         = "TCP"
+    cidr_blocks      = var.server_sg_cidr
+  }
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "TCP"
+    cidr_blocks      = var.bastion_nodes
+  }
+
+  ingress {
+    from_port        = 9100
+    to_port          = 9100
+    protocol         = "TCP"
+    cidr_blocks      = var.prometheus_nodes
   }
 
   egress {
@@ -86,6 +100,31 @@ resource "aws_route53_record" "lb-record" {
   zone_id = var.zone_id
   records = [aws_lb.main_lb[0].dns_name]
   ttl     = 30
+}
+
+resource "aws_security_group" "lb-sg" {
+  count       = var.lb_needed ? 1 : 0
+  name        = "${var.component}-${var.env}-sg"
+  description = "${var.component}-${var.env}-sg"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    from_port        = var.app_port
+    to_port          = var.app_port
+    protocol         = "TCP"
+    cidr_blocks      = var.lb_sg_cidr
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.component}-${var.env}-lb-sg"
+  }
 }
 
 resource "aws_lb" "main_lb" {

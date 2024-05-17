@@ -14,6 +14,10 @@ module "frontend" {
   lb_needed = true
   lb_subnets = module.vpc.public_subnets
   app_port = 80
+  bastion_nodes = var.bastion_nodes
+  prometheus_nodes = var.prometheus_nodes
+  server_sg_cidr = var.public_subnets
+  lb-sg-cidr = ["0.0.0.0/0"]
 }
 module "backend" {
   depends_on = [module.database]
@@ -30,6 +34,10 @@ module "backend" {
   lb_needed = true
   lb_subnets = module.vpc.be_subnets
   app_port = 8080
+  bastion_nodes = var.bastion_nodes
+  prometheus_nodes = var.prometheus_nodes
+  server_sg_cidr = concat(var.fe_subnets, var.be_subnets)
+  lb-sg-cidr = var.fe_subnets
 }
 module "database" {
   source = "./modules/app"
@@ -40,6 +48,9 @@ module "database" {
   vault_token = var.vault_token
   vpc_id = module.vpc.vps_id
   subnets = module.vpc.db_subnets
+  bastion_nodes = var.bastion_nodes
+  prometheus_nodes = var.prometheus_nodes
+  server_sg_cidr = var.be_subnets
 }
 
 module "vpc" {
