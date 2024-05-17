@@ -19,6 +19,7 @@ module "frontend" {
   server_sg_cidr = var.public_subnets
   lb_sg_cidr = ["0.0.0.0/0"]
   lb_ports = { http: 80, https: 443}
+  ssl_arn = var.ssl_arn
 }
 module "backend" {
   depends_on = [module.database]
