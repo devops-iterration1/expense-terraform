@@ -17,7 +17,7 @@ module "frontend" {
   bastion_nodes = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
   server_sg_cidr = var.public_subnets
-  lb-sg-cidr = ["0.0.0.0/0"]
+  lb_sg_cidr = ["0.0.0.0/0"]
   lb_ports = { http: 80, https: 443}
 }
 module "backend" {
@@ -38,7 +38,7 @@ module "backend" {
   bastion_nodes = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
   server_sg_cidr = concat(var.fe_subnets, var.be_subnets)
-  lb-sg-cidr = var.fe_subnets
+  lb_sg_cidr = var.fe_subnets
   lb_ports = { http: 8080}
   ssl_arn = var.ssl_arn
 }
