@@ -26,3 +26,9 @@ variable "server_sg_cidr" {}
 variable "lb_sg_cidr" {
   default = []
 }
+variable "lb_ports" {
+  default = {}
+}
+variable "ssl_arn" {
+  default = null
+}

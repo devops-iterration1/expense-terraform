@@ -18,6 +18,7 @@ module "frontend" {
   prometheus_nodes = var.prometheus_nodes
   server_sg_cidr = var.public_subnets
   lb-sg-cidr = ["0.0.0.0/0"]
+  lb_ports = { http: 80, https: 443}
 }
 module "backend" {
   depends_on = [module.database]
@@ -38,6 +39,8 @@ module "backend" {
   prometheus_nodes = var.prometheus_nodes
   server_sg_cidr = concat(var.fe_subnets, var.be_subnets)
   lb-sg-cidr = var.fe_subnets
+  lb_ports = { http: 8080}
+  ssl_arn = var.ssl_arn
 }
 module "database" {
   source = "./modules/app"
