@@ -118,13 +118,6 @@ resource "aws_security_group" "lb-sg" {
     }
   }
 
-  ingress {
-    from_port        = var.app_port
-    to_port          = var.app_port
-    protocol         = "TCP"
-    cidr_blocks      = var.lb_sg_cidr
-  }
-
   egress {
     from_port        = 0
     to_port          = 0
