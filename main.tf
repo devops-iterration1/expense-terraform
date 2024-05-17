@@ -41,7 +41,6 @@ module "backend" {
   server_sg_cidr = concat(var.fe_subnets, var.be_subnets)
   lb_sg_cidr = var.fe_subnets
   lb_ports = { http: 8080}
-  ssl_arn = var.ssl_arn
 }
 module "database" {
   source = "./modules/app"
